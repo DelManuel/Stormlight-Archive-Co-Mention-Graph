@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.ticker import MaxNLocator
-plt.style.use("seaborn")
+plt.style.use("seaborn-dark")
 #%% To load the graphs
 with open('graphs/WoK.gpickle', 'rb') as f:
     G_wok = pickle.load(f)
@@ -16,9 +16,7 @@ with open('graphs/OB.gpickle', 'rb') as f:
 with open('graphs/RoW.gpickle', 'rb') as f:
     G_row = pickle.load(f)
 
-
-
-#%% Studying Kaladin´s links
+#%% Studying central characters´s links
 
 G_wok_simple = nx.Graph(G_wok)
 G_wor_simple = nx.Graph(G_wor)
@@ -27,7 +25,7 @@ G_row_simple = nx.Graph(G_row)
 
 list_of_graphs = [G_wok_simple, G_wor_simple, G_ob_simple, G_row_simple]
 
-characters_to_analyze = ["Kaladin", "Shallan", "Dalinar", "Venli", "Szeth"]
+characters_to_analyze = ["Kaladin", "Shallan", "Dalinar", "Venli", "Szeth", "Stormfather"]
 
 edges_with_characters_by_book = [[0,0,0,0] for i in characters_to_analyze]
 
@@ -47,9 +45,11 @@ for i, character_percentage in enumerate(edges_with_characters_by_book):
     ax.plot(range(1,5),character_percentage, ls = "--", marker = ".", ms = 12, label = characters_to_analyze[i])
 ax.grid(True)
 ax.legend(fontsize = 16)
-ax.set_ylim(-0.05,1)
+ax.set_ylim(-0.08,1)
 ax.xaxis.set_major_locator(MaxNLocator(integer=True))
 ax.set_xlabel("Book number", fontsize = 18)
 ax.set_ylabel("Percentage of characters connected with", fontsize = 18)
 ax.tick_params(axis='both', which='major', labelsize=14)
+
+
 # %%
